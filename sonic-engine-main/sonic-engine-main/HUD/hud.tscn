@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://x60vvc762eh3"]
+
+[ext_resource type="Script" uid="uid://dk5741qa805v0" path="res://HUD/HUD.gd" id="1_sk4b3"]
+[ext_resource type="FontFile" uid="uid://bt0actuhq5dsy" path="res://HUD/assets/font.png" id="2_3mk7e"]
+[ext_resource type="Texture2D" uid="uid://4ki0s2favrjd" path="res://HUD/assets/sonicHUD.png" id="2_budoq"]
+
+[sub_resource type="Theme" id="Theme_her43"]
+default_font = ExtResource("2_3mk7e")
+
+[sub_resource type="Theme" id="Theme_cphxs"]
+default_font = ExtResource("2_3mk7e")
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_sk4b3")
+
+[node name="stats" type="Node2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="rings" type="Sprite2D" parent="stats"]
+texture_filter = 1
+position = Vector2(26, 13)
+texture = ExtResource("2_budoq")
+region_enabled = true
+region_rect = Rect2(153, 66, 39, 14)
+
+[node name="counter" type="Label" parent="stats/rings"]
+offset_left = 25.0
+offset_top = -8.0
+offset_right = 52.0
+offset_bottom = 8.0
+theme = SubResource("Theme_her43")
+text = "999"
+metadata/_edit_use_anchors_ = true
+
+[node name="time" type="Sprite2D" parent="stats"]
+texture_filter = 1
+position = Vector2(23, 29)
+texture = ExtResource("2_budoq")
+region_enabled = true
+region_rect = Rect2(153, 51, 32, 14)
+
+[node name="m" type="Label" parent="stats/time"]
+anchors_preset = -1
+anchor_left = -0.28125
+anchor_right = -0.28125
+offset_left = 27.0
+offset_top = -8.0
+offset_right = 54.0
+offset_bottom = 8.0
+theme = SubResource("Theme_cphxs")
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="s" type="Label" parent="stats/time"]
+anchors_preset = -1
+anchor_left = -0.5625
+anchor_right = -0.5625
+offset_left = 56.0
+offset_top = -8.0
+offset_right = 83.0
+offset_bottom = 8.0
+theme = SubResource("Theme_cphxs")
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Sprite2D" parent="stats"]
+texture_filter = 1
+position = Vector2(28, 45)
+texture = ExtResource("2_budoq")
+region_enabled = true
+region_rect = Rect2(153, 81, 41, 14)
+
+[node name="score" type="Label" parent="stats/score"]
+offset_left = 26.0
+offset_top = -8.0
+offset_right = 80.0
+offset_bottom = 8.0
+theme = SubResource("Theme_cphxs")
+text = "999999"
+metadata/_edit_use_anchors_ = true

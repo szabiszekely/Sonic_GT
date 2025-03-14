@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://bw4kcqc7osxi0"]
+
+[ext_resource type="Script" uid="uid://b6612snwkwoci" path="res://classes/player/player.gd" id="1_630sa"]
+[ext_resource type="PackedScene" uid="uid://x60vvc762eh3" path="res://HUD/hud.tscn" id="2_86xc8"]
+[ext_resource type="SpriteFrames" uid="uid://dksjypf7v2ivc" path="res://premakes/sonic/assets/sonic.tres" id="3_bb3d4"]
+[ext_resource type="Script" uid="uid://djogro5tpmlvo" path="res://classes/stateMachine.gd" id="4_xebnb"]
+[ext_resource type="Script" uid="uid://buoumxh1f23mf" path="res://classes/player/states/idle.gd" id="5_imnsh"]
+[ext_resource type="Script" uid="uid://dvtj6p2w0g1tp" path="res://classes/player/states/ground.gd" id="6_nkxak"]
+[ext_resource type="Script" uid="uid://b3t8dvy17nj2o" path="res://classes/player/states/damage.gd" id="7_jl184"]
+[ext_resource type="Script" uid="uid://eyvg8ad8ud64" path="res://classes/player/states/air.gd" id="7_yiu5r"]
+[ext_resource type="Script" uid="uid://c3ic6lk15dm6p" path="res://classes/player/states/rolling.gd" id="8_dugse"]
+[ext_resource type="Script" uid="uid://d34f6l6qf73sx" path="res://premakes/sonic/StateAnimation.gd" id="9_40bil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl6lw"]
+size = Vector2(15, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpirt"]
+size = Vector2(15, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s33uk"]
+size = Vector2(17, 37)
+
+[node name="sonic" type="CharacterBody2D" node_paths=PackedStringArray("animPlayer", "hitBox", "HUD", "runCollision", "rollCollision")]
+script = ExtResource("1_630sa")
+animPlayer = NodePath("animPlayer")
+hitBox = NodePath("hitBox")
+HUD = NodePath("HUD")
+runCollision = NodePath("runCollision")
+rollCollision = NodePath("rollCollision")
+metadata/_custom_type_script = "uid://diak6pnmtxw04"
+
+[node name="rollCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pl6lw")
+
+[node name="runCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lpirt")
+
+[node name="animPlayer" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("3_bb3d4")
+animation = &"duck"
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="hitBoxShape" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("RectangleShape2D_s33uk")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
+script = ExtResource("4_xebnb")
+initial_state = NodePath("airPlayer")
+entity = NodePath("..")
+
+[node name="airPlayer" type="Node" parent="StateMachine"]
+script = ExtResource("7_yiu5r")
+
+[node name="groundPlayer" type="Node" parent="StateMachine"]
+script = ExtResource("6_nkxak")
+
+[node name="idlePlayer" type="Node" parent="StateMachine"]
+script = ExtResource("5_imnsh")
+
+[node name="damagePlayer" type="Node" parent="StateMachine"]
+script = ExtResource("7_jl184")
+
+[node name="rollingPlayer" type="Node" parent="StateMachine"]
+script = ExtResource("8_dugse")
+
+[node name="HUD" parent="." instance=ExtResource("2_86xc8")]
+
+[node name="StateAnimation" type="Node" parent="." node_paths=PackedStringArray("player", "stateMachine")]
+script = ExtResource("9_40bil")
+player = NodePath("..")
+stateMachine = NodePath("../StateMachine")

@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://wklyafgmeh5c"]
+
+[ext_resource type="Texture2D" uid="uid://chgigu3kfaikl" path="res://icon.svg" id="1_qxyge"]
+[ext_resource type="PackedScene" uid="uid://bw4kcqc7osxi0" path="res://premakes/sonic/sonic.tscn" id="2_fby51"]
+[ext_resource type="Texture2D" uid="uid://bvbalvk8ec5gg" path="res://objects/level objects/loop.png" id="3_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2xai"]
+size = Vector2(10174, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(30.5, 3427.63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
+size = Vector2(319, 140)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2369, 14.5)
+shape = SubResource("RectangleShape2D_j2xai")
+
+[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(117, 54)
+texture = ExtResource("1_qxyge")
+
+[node name="Player" parent="StaticBody2D" instance=ExtResource("2_fby51")]
+position = Vector2(255, -85)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="StaticBody2D/Player"]
+zoom = Vector2(3, 3)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-4197, -190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-3222, -110.5)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(963, -190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1454.75, -327.5)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(624, -85)
+rotation = 1.07189
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+polygon = PackedVector2Array(-110.707, 334.846, 331.245, -1182.67, 362.63, -1679.17, 187.332, -1948.93, 916.328, -1531.21, -205.111, 537.362)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(-6237, -26)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D5"]
+position = Vector2(37, -4)
+polygon = PackedVector2Array(315, 24, -299, -48, -457, -99, -557, -187, -642, -282, -677, -400, -677, -542, -649, -718, -556, -844, -442, -931, -287, -991, -129, -1030, 56, -1058, 238, -1039, 322, -996, 389, -956, 492, -895, 472, -1011, 363, -1146, 156, -1218, -339, -1210, -658, -1097, -878, -821, -909, -614, -834, -219, -605, -15, -442, 64, 136, 86)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D5"]
+position = Vector2(5, 6)
+polygon = PackedVector2Array(164, -819, 205, -790, 306, -782, 403, -774, 591, -760, 813, -769, 1011, -805, 1209, -781, 1244, -794, 1284, -806, 1319, -850, 1367, -896, 1425, -915, 1497, -913, 1516, -890, 1544, -851, 1560, -814, 1563, -786, 1636, -755, 1741, -781, 1862, -798, 1973, -809, 2219, -788, 2303, -777, 2393, -753, 2468, -734, 2610, -732, 2690, -748, 2855, -783, 2999, -800, 3083, -806, 3161, -818, 3224, -834, 3312, -878, 3367, -937, 3388, -960, 3430, -1022, 3454, -1080, 3459, -1170, 3461, -1232, 3462, -1300, 3479, -1359, 3501, -1382, 3529, -1385, 3579, -1363, 3614, -1330, 3631, -1288, 3661, -1257, 3704, -1238, 3765, -1234, 3796, -1231, 3850, -1227, 3907, -1224, 4020, -1234, 4079, -1208, 4079, -1121, 4020, -1069, 3977, -1003, 3944, -920, 3947, -842, 3932, -800, 3848, -753, 3744, -741, 3671, -750, 3520, -743, 3499, -706, 3475, -640, 3444, -597, 3383, -571, 3166, -642, 3102, -644, 3003, -621, 2949, -616, 2832, -616, 2742, -562, 2612, -585, 2504, -592, 2393, -592, 2315, -590, 2258, -510, 2176, -479, 1968, -491, 1766, -559, 1612, -581, 1546, -618, 1461, -625, 1287, -651, 1117, -658, 1058, -609, 877, -569, 778, -625, 615, -635, 438, -609, 332, -590, 202, -595, 146, -607, 80, -640, 47, -677, 39, -710, 44, -750, 72, -783, 124, -802)
+
+[node name="Loop" type="Sprite2D" parent="."]
+position = Vector2(-2501, 573.493)
+scale = Vector2(7.69531, 1.61803)
+texture = ExtResource("3_epypp")
+
+[node name="Loop2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1538.05, 26.9039)
+rotation = -0.503905
+scale = Vector2(2.06585, 1.5079)
+texture = ExtResource("3_epypp")
+
+[node name="Loop3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2820, 192)
+rotation = 0.480294
+scale = Vector2(0.983881, 0.751887)
+texture = ExtResource("3_epypp")
+
+[node name="Loop4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3739.3, 137.846)
+rotation = -0.00015223
+scale = Vector2(0.263762, 0.604738)
+texture = ExtResource("3_epypp")
+
+[node name="Loop5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3424, 60)
+rotation = -0.00015223
+scale = Vector2(0.263762, 0.604738)
+texture = ExtResource("3_epypp")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-3638.99, -377.065)
+rotation = -1.20429e-05
+scale = Vector2(1, 0.92089)
+skew = 2.5034e-05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(-95.5, 391)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(-3323.69, -454.911)
+rotation = -1.20429e-05
+scale = Vector2(1, 0.92089)
+skew = 2.5034e-05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(-95.5, 391)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D8"]
+position = Vector2(-2981, -100)
+polygon = PackedVector2Array(-278, -187, -279, -121, -359, -124, -356, -59, -279, 134, 1006, 141, 423, 30, 159, -46, -153, -154)

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl5b2e8gluavu"]
+
+[ext_resource type="Texture2D" uid="uid://bvbalvk8ec5gg" path="res://objects/level objects/loop.png" id="1_lt4yx"]
+[ext_resource type="Script" uid="uid://v7fhl4y3brml" path="res://classes/objects/switcher/switcher.gd" id="2_i1wwn"]
+[ext_resource type="PackedScene" uid="uid://bw4kcqc7osxi0" path="res://premakes/sonic/sonic.tscn" id="3_51p13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt4yx"]
+size = Vector2(20, 72)
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_lt4yx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(46, 70)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-46, -70)
+polygon = PackedVector2Array(209, -290, 464, -290, 464, -56, 336, 74, -38, 78, -38, 70, 92, 70, 178, 58, 250, 39, 290, 19, 320, -7, 349, -47, 365, -91, 368, -105, 367, -140, 357, -182, 332, -224, 304, -251, 278, -266, 245, -279, 230, -281, 208.681, -281)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(372, -70)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(209, -290, 464, -290, 466, -218, 435, -185, 434, -25, 336, 74, -38, 78, -38, 70, 92, 70, 178, 58, 250, 39, 290, 19, 320, -7, 349, -47, 365, -91, 368, -105, 367, -140, 357, -182, 332, -224, 304, -251, 278, -266, 245, -279, 230, -281, 208.681, -281)
+disabled = true
+
+[node name="sonic" parent="." instance=ExtResource("3_51p13")]
+position = Vector2(19, 46)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="sonic"]
+zoom = Vector2(3, 3)
+
+[node name="switcher" type="Area2D" parent="." node_paths=PackedStringArray("area", "initialCollision", "collision1", "collision2")]
+position = Vector2(209, -226)
+script = ExtResource("2_i1wwn")
+area = NodePath("area")
+initialCollision = NodePath("../StaticBody2D/CollisionPolygon2D")
+collision1 = NodePath("../StaticBody2D/CollisionPolygon2D")
+collision2 = NodePath("../StaticBody2D/CollisionPolygon2D2")
+metadata/_custom_type_script = "uid://v7fhl4y3brml"
+metadata/_edit_group_ = true
+
+[node name="area" type="CollisionShape2D" parent="switcher"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_lt4yx")
